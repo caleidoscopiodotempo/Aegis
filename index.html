@@ -30,6 +30,7 @@
   </div>
 
   <button id="resetProgress" onclick="resetarCorrosao()">Momento de Clareza</button>
+  <button id="maxProgress" onclick="corrosaoMaximo()">Quebrar(100%)</button>
 
   <p id="corrosionStatus">Você está estável, Aegis.</p>
 
@@ -77,6 +78,11 @@
     // reset caso deus abençoe essa pobre alma
     function resetarCorrosao() {
       progress = 0;
+// resete but evil
+      function corrosaoMaximo() {
+      progress = 100;
+      alterarCorrosao(0); 
+    }
       alterarCorrosao(0); // se resetar, atualiza a barra e o status
     }
   </script>
