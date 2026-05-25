@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Aegis</title>
+<link rel="stylesheet" href="aegis.css">
+
+</head>
+<body>
+
+  <h2>A e g i s</h2>
+  <div  class="subtitle">Monitor</div>
+  
+  <div id="progressContainer">
+     <div id="progressBar"></div>
+  </div>
+
+  <div class="control-group">
+    <h3>Gatilhos</h3>
+        <button onclick="alterarCorrosao(1)">+1</button>
+             <button onclick="alterarCorrosao(5)">+5</button>
+                 <button onclick="alterarCorrosao(10)">+10</button>
+  </div>
+
+  <div class="control-group">
+    <h3>Âncoras</h3>
+        <button onclick="alterarCorrosao(-1)">-1</button>
+           <button onclick="alterarCorrosao(-5)">-5</button>
+                <button onclick="alterarCorrosao(-10)">-10</button>
+  </div>
+
+  <button id="resetProgress" onclick="resetarCorrosao()">Momento de Clareza</button>
+
+  <p id="corrosionStatus">Você está estável, Aegis.</p>
+
+  <script>
+    const progressBar = document.getElementById('progressBar');
+          const statusText = document.getElementById('corrosionStatus');
+    
+    let progress = 0;
+
+    // função que trata o aumento e a diminuição deus me abençoe
+    function alterarCorrosao(valor) {
+      progress += valor;
+      
+      // trava pra evitar q o limite passe do limite e quebre tudo e eu me mate na frente do vs code
+      if (progress > 100) progress = 100;
+            if (progress < 0) progress = 0;
+
+      // isso aqui é oq ta aumentando a barra de progresso, a largura dela é baseada na porcentagem atual
+      progressBar.style.width = progress + '%';
+      
+      // sistema de estagios de corrosão, cada estágio tem uma cor diferente e um texto diferente pra mostrar o quao perto do limite o Aegis tá
+      if (progress === 0) {
+        progressBar.style.backgroundColor = '#5d4037'; // marromzinho humilde
+            statusText.innerText = "Você está bem, Aegis. Sua mente está clara por enquanto.";
+                 statusText.style.color = "#888";
+      } else if (progress <= 30) {
+        progressBar.style.backgroundColor = '#7b1fa2'; // roxo escuro
+             statusText.innerText = "Alguns pensamentos começam a se tornar impulsivos. Mas deve ser o estresse. (" + progress + "%)";
+                  statusText.style.color = "#e0e0e0";
+      } else if (progress <= 60) {
+        progressBar.style.backgroundColor = '#c2185b'; // rosa/carmim
+             statusText.innerText = "Ele está perdendo o controle sobre a empatia. (" + progress + "%)";
+                   statusText.style.color = "#e0e0e0";
+      } else if (progress <= 90) {
+        progressBar.style.backgroundColor = '#d32f2f'; // vermelho puto
+              statusText.innerText = "Perto do limite. (" + progress + "%)";
+                   statusText.style.color = "#e0e0e0";
+      } else {
+        progressBar.style.backgroundColor = '#8b0000'; // vermelho sangue escuro
+               statusText.innerText = "Bom dia, Nick. (" + progress + "%)";
+                    statusText.style.color = "#ff4c4c";
+      }
+    }
+
+    // reset caso deus abençoe essa pobre alma
+    function resetarCorrosao() {
+      progress = 0;
+      alterarCorrosao(0); // se resetar, atualiza a barra e o status
+    }
+  </script>
+
+</body>
+</html>
