@@ -84,3 +84,12 @@
     font-weight: bold;
     transition: color 0.3s;
   }
+
+#maxProgress {
+  border-color: #d32f2f;
+  color: #ff4c4c;
+}
+
+#maxProgress:hover {
+  background-color: #4a1c1c;
+}
