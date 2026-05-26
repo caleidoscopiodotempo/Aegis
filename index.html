@@ -37,8 +37,9 @@
     const progressBar = document.getElementById('progressBar');
        const statusText = document.getElementById('corrosionStatus');
     
-    let progress = 0;
-
+    let progress = Number(localStorage.getItem('aegis_progress')) || 0;
+    alterarCorrosao(0);
+    
     // função que trata o aumento e a diminuição deus me abençoe
      function alterarCorrosao(valor) {
          progress += valor;
@@ -46,6 +47,10 @@
       // trava pra evitar q o limite passe do limite e quebre tudo e eu me mate na frente do vs code
       if (progress > 100) progress = 100;
          if (progress < 0) progress = 0;
+
+       // local storage
+      localStorage.setItem('aegis_progress', progress);
+      progressBar.style.width = progress + '%';
 
       // isso aqui é oq ta aumentando a barra de progresso, a largura dela é baseada na porcentagem atual
       progressBar.style.width = progress + '%';
